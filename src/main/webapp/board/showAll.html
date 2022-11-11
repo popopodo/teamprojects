@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('head').load('/importer.html');
+        });
+
+
+
+    </script>
 </head>
 <body>
-<h1>로그인 성공!!!</h1>
+<div class="container vh-100 w-75">
+    <nav class="navbar sticky-top bg-light mt-4">
+        <div class="container-fluid justify-content-between">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="btn" href="#">로그아웃</a>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

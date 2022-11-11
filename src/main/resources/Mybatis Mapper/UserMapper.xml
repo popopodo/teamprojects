@@ -8,4 +8,12 @@
         WHERE `username` = #{username}
         AND `password` = #{password}
     </select>
+    <select id="validateUsername" resultType="UserDTO" parameterType="UserDTO">
+        SELECT * FROM `USER`
+        WHERE `username` = #{username}
+    </select>
+    <insert id="register" parameterType="UserDTO">
+        INSERT INTO `user`(`username`, `password`, `nickname`)
+        VALUES(#{username}, #{password}, #{nickname})
+    </insert>
 </mapper>

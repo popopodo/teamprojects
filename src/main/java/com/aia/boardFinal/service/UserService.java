@@ -15,4 +15,12 @@ public class UserService {
         return session.selectOne(NAMESPACE + ".auth", userDTO);
     }
 
+    public UserDTO validateUsername(UserDTO userDTO){
+        return session.selectOne(NAMESPACE + ".validateUsername", userDTO);
+    }
+
+    public void register(UserDTO userDTO){
+        session.insert(NAMESPACE+".register", userDTO);
+    }
+
 }

@@ -31,4 +31,30 @@ public class UserController {
 
         return resultMap;
     }
+
+    @ResponseBody
+    @PostMapping("validate")
+    public Map<String, Object> validateUsername(@RequestBody UserDTO userDTO) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        if (userService.validateUsername(userDTO) == null) {
+            resultMap.put("message", "success");
+        } else {
+            resultMap.put("message", "fail");
+        }
+
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("register")
+    public Map<String, Object> register(@RequestBody UserDTO userDTO) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        userService.register(userDTO);
+
+        resultMap.put("message", "success");
+
+        return resultMap;
+    }
 }
