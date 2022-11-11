@@ -4,11 +4,9 @@ import com.aia.boardFinal.model.UserDTO;
 import com.aia.boardFinal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,12 +18,16 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/auth")
-    public Map<String, Object> auth(@RequestParam Map<String, Object> data) {
-        System.out.println(data);
+    public Map<String, Object> auth(HttpSession session, @RequestBody UserDTO userDTO) {
+        UserDTO logIn = userService.auth(userDTO);
 
         Map<String, Object> resultMap = new HashMap<>();
-
-        resultMap.put("message", "success");
+        if (logIn != null) {
+            session.setAttribute("logIn", logIn);
+            resultMap.put("message", "success");
+        } else {
+            resultMap.put("message", "fail");
+        }
 
         return resultMap;
     }
