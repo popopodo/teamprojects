@@ -9,8 +9,6 @@
         $(document).ready(function(){
             $('head').load('importer.html');
         });
-
-
     </script>
 </head>
 <body>
@@ -40,9 +38,31 @@
 </section>
 <script>
     function auth() {
-        let username = $('#username').val();
-        let password = $('#password').val();
+        let userData = JSON.stringify({
+            username: $('#username').val(),
+            password: $('#password').val()
+        });
+
+        $.ajax({
+            url: "/user/auth",
+            type: "post",
+            data: userData,
+            dataType: "json",
+            contentType: "application/json;charset=UTF-8",
+            success: function(data, status, xhr){
+                if(data.message == 'success') {
+                    location.href='/board/showAll.html';
+                } else if(data.message == 'fail') {
+                    Swal.fire({
+                    icon: 'error',
+                    title: '로그인 실패',
+                    text: '아이디와 비밀번호를 다시 확인해주세요'
+                    });
+                }
+            }
+        });
     }
+
 </script>
 </body>
 </html>
